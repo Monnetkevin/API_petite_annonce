@@ -19,10 +19,10 @@ return new class extends Migration
             $table->decimal('price');
             $table->timestamps();
 
-            $table->foreignId('condition_id')->constrained();
-            $table->foreignId('status_id')->constrained();
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('condition_id')->on('conditions')->constrained();
+            $table->foreignId('status_id')->on('statuses')->constrained();
+            $table->foreignId('category_id')->on('categories')->constrained();
+            $table->foreignId('user_id')->on('users')->constrained();
         });
     }
 
