@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Condition extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'condition_name'
+    ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

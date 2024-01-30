@@ -13,7 +13,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::with(['category', 'condition', 'status'])->get();
+        return response()->json($articles);
     }
 
     /**
@@ -21,7 +22,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'article_name' => 'required|max:100',
+            'article_content' => 'required',
+            'location' => 'required|max:100',
+            'price' => 'required',
+            'condition_id' => 'required',
+            'status_id' => 'required',
+
+        ]);
     }
 
     /**

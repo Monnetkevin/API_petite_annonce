@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('image');
             $table->timestamps();
 
-            $table->foreignId('article_id')->constrained();
+            $table->foreignId('article_id')->references('id')->on('articles');
+            $table->foreignId('user_id')->nullable()->references('id')->on('users');
         });
     }
 

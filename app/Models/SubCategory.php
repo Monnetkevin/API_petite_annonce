@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategory extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'subcategory_name',
+        'category_id'
+    ];
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

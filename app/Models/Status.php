@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
