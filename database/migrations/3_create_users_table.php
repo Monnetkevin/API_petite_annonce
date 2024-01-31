@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('pseudo')->unique();
             $table->string('email')->unique();
-            $table->integer('phoneNumber');
+            $table->string('phoneNumber');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreignId('role_id')->constrained();
-            $table->foreignId('image_id')->constrained();
+            $table->foreignId('role_id')->on('roles')->default(1)->constrained();
+            $table->foreignId('image_id')->on('images')->default(1)->constrained();
         });
     }
 

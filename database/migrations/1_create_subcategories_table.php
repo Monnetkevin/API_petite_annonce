@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('subCategory_name');
 
-            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->on('categories');
         });
     }
 

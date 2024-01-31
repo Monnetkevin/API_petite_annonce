@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             SubCategorySeeder::class,
             CategorySeeder::class,
+            ConditionSeeder::class,
+            StatusSeeder::class,
             UserSeeder::class,
 
         ]);

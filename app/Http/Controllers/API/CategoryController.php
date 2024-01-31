@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = DB::table('categories')
+            ->get()
+            ->toArray();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $categories
+        ]);
     }
 
     /**
@@ -21,7 +29,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|max:50'
+        ]);
+
+        $category = Category::create($request->all());
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Ajouter avec succès',
+            'data' => $category
+        ]);
     }
 
     /**
@@ -29,7 +46,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return response()->json([
+            'status' => 'success',
+            'data' => $category
+        ]);
     }
 
     /**
@@ -37,7 +57,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|max:50'
+        ]);
+        $category->update($request->all());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Mise à jour réussite !',
+            'data' => $category
+        ]);
     }
 
     /**
@@ -45,6 +74,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Super, tu as supprimé la catégorie'
+        ]);
     }
 }
